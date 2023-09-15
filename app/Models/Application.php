@@ -13,8 +13,13 @@ class Application extends Model
         'message',
         'status',
     ];
-    public function user(): BelongsTo
+
+    public function user()
     {
-        return $this->belongsTo(Application::class);
+        return $this->belongsTo(User::class);
+    }
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

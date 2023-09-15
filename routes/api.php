@@ -27,10 +27,12 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanc
 //  admin route
 Route::middleware(['auth:sanctum', 'checkRole:1'])->group(function () {
     Route::get('/requests', [ApplicationController::class, 'index']);
+    Route::put('/requests/{application}', [ApplicationController::class, 'sendemail']);
 });
 
 // user route
 Route::middleware(['auth:sanctum', 'checkRole:2'])->group(function () {
-    Route::get('/test', [ApplicationController::class, 'test']);
+    Route::get('/getall', [ApplicationController::class, 'getall']);
+    Route::post('/requests', [ApplicationController::class, 'requests']);
     // ...
 });
