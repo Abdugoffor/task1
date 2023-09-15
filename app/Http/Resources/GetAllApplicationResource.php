@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ApplicationResource extends JsonResource
+class GetAllApplicationResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,7 +18,6 @@ class ApplicationResource extends JsonResource
             'id' => $this->id,
             'message' => $this->message,
             'status' => $this->status,
-            'email' => $this->user,
             'date' => $this->created_at->format('Y-m-d H:m:s'),
         ];
     }

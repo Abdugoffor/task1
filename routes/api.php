@@ -16,9 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+
 Route::post('/registr', [AuthController::class, 'registr']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/verified_code', [AuthController::class, 'verified_code'])->middleware('auth:sanctum');
@@ -34,5 +32,4 @@ Route::middleware(['auth:sanctum', 'checkRole:1'])->group(function () {
 Route::middleware(['auth:sanctum', 'checkRole:2'])->group(function () {
     Route::get('/getall', [ApplicationController::class, 'getall']);
     Route::post('/requests', [ApplicationController::class, 'requests']);
-    // ...
 });

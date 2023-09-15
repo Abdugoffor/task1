@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ApplicationResource;
+use App\Http\Resources\GetAllApplicationResource;
 use App\Jobs\SendEmailCommentJob;
 use App\Models\Application;
 use App\Models\Comment;
@@ -44,7 +45,7 @@ class ApplicationController extends Controller
     public function getall()
     {
         $user = Auth::user();
-        $application = Application::where('user_id', $user->id)->get();
+        $application = GetAllApplicationResource::collection(Application::where('user_id', $user->id)->get());
         return response()->json(['application' => $application], 200);
     }
 
@@ -66,7 +67,6 @@ class ApplicationController extends Controller
         
         $application = new ApplicationResource($application);
         
-        // dd($application->user);
         $comment = new Comment();
         $comment->application_id = $application->id;
         $comment->comment = $request->comment;
